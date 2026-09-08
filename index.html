@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — Cerebo</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1c1c1e;
+    --muted: #6b6b70;
+    --rule: #e4e4e7;
+    --accent: #534ab7;
+    --card: #f7f7f9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131316;
+      --fg: #ececee;
+      --muted: #a0a0a8;
+      --rule: #2c2c31;
+      --accent: #9b93f5;
+      --card: #1c1c21;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 3rem 1.25rem 5rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .35rem; letter-spacing: -.02em; }
+  .updated { color: var(--muted); font-size: .95rem; margin: 0 0 2.5rem; }
+  h2 {
+    font-size: 1.2rem; margin: 2.5rem 0 .75rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    letter-spacing: -.01em;
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  h3 { font-size: 1.02rem; margin: 1.5rem 0 .4rem; }
+  .contact {
+    background: var(--card);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin: 0 0 2.25rem;
+  }
+  ul, ol { padding-left: 1.25rem; }
+  li { margin: .45rem 0; }
+  a { color: var(--accent); }
+  code {
+    background: var(--card); padding: .1em .35em;
+    border-radius: 4px; font-size: .9em;
+  }
+  footer {
+    margin-top: 3.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>Cerebo Support</h1>
+  <p class="updated">Flashcards with real formatting, and spaced repetition that does the work.</p>
+
+  <div class="contact">
+    <strong>Need a hand, found a bug, or want to suggest something?</strong><br>
+    Email <a href="mailto:satwikdev12@gmail.com">satwikdev12@gmail.com</a>. Please say which
+    iPhone or iPad you are using and which version of iOS, and describe what you
+    expected to happen — it makes problems far quicker to track down.
+  </div>
+
+  <h2>Getting started</h2>
+  <p>
+    Tap <strong>+</strong> on the home screen to create a deck, or a category to
+    group several decks together. Open a deck and tap <strong>+</strong> again to
+    add your first card. There is a full set of walkthroughs inside the app under
+    <strong>Settings → Tutorials</strong>.
+  </p>
+
+  <h2>Frequently asked</h2>
+
+  <h3>How do I bring my Anki decks across?</h3>
+  <p>
+    Export your deck from Anki as an <code>.apkg</code> file, then in Cerebo tap
+    <strong>+</strong> on the home screen and choose <strong>Import from
+    Anki</strong>. Cards, media, cloze deletions, reverse cards and scheduling all
+    come across, and nested Anki decks become Cerebo categories. Cerebo can export
+    back to <code>.apkg</code> at any time, so your cards are never locked in.
+  </p>
+
+  <h3>How does the scheduling work?</h3>
+  <p>
+    Cerebo uses the SM-2 spaced repetition algorithm. After you see a card's
+    answer you rate it Again, Hard, Good or Easy, and that rating sets when the
+    card comes back — easy cards move out to longer intervals, difficult ones
+    return sooner. You can set a daily limit for new cards and reviews per deck.
+  </p>
+
+  <h3>Can I write maths and code on a card?</h3>
+  <p>
+    Yes. In the card editor, expand the editor and use the toolbar to insert a
+    <strong>math block</strong> (LaTeX), a <strong>code block</strong> with syntax
+    highlighting, or a <strong>graph</strong> of one or more functions. You can
+    also write inline maths in text with <code>\(…\)</code>, and build tables with
+    ordinary markdown pipes.
+  </p>
+
+  <h3>How do cloze deletions work?</h3>
+  <p>
+    Wrap the part you want hidden in double braces: <code>The capital of France is
+    {{c1::Paris}}</code>. Use <code>c1</code>, <code>c2</code> and so on to reveal
+    blanks separately, and add a hint with a second pair of colons:
+    <code>{{c1::Paris::the city of light}}</code>.
+  </p>
+
+  <h3>My decks aren't syncing between devices</h3>
+  <ol>
+    <li>Check that <strong>iCloud sync</strong> is turned on in Cerebo's Settings on every device.</li>
+    <li>Make sure all devices are signed in to the <em>same</em> Apple Account, with iCloud Drive enabled.</li>
+    <li>Sync needs a network connection, and can take a few minutes to settle after a large import.</li>
+    <li>Cerebo's Settings screen shows the current sync status and reports the last error if one occurred.</li>
+  </ol>
+
+  <h3>Does Cerebo work offline?</h3>
+  <p>
+    Completely. Every feature except iCloud sync works with no network connection
+    at all — the app makes no network requests of its own.
+  </p>
+
+  <h3>Where does the AI card generation run?</h3>
+  <p>
+    On your device, using Apple Intelligence. It appears only on devices that
+    support it, and nothing you write is sent to any server the developer
+    operates.
+  </p>
+
+  <h3>How do I back up my cards?</h3>
+  <p>
+    Open a deck, tap the <strong>⋯</strong> menu and choose an export format —
+    <strong>JSON</strong> keeps the most detail, <strong>.apkg</strong> is best if
+    you want to open the deck in Anki, and <strong>CSV</strong> is the simplest to
+    read elsewhere. Save the file wherever you keep backups.
+  </p>
+
+  <h3>Can I use Cerebo on my Apple Watch?</h3>
+  <p>
+    Yes — install the Cerebo watch app from the Watch app on your iPhone. Your
+    decks sync across from your phone so you can review on your wrist. There are
+    also Home Screen and Lock Screen widgets showing what's due, and a Live
+    Activity while a study session is running.
+  </p>
+
+  <h2>Privacy</h2>
+  <p>
+    Cerebo collects nothing — no accounts, no analytics, no advertising, no
+    tracking. The full details are in the
+    <a href="privacy.html">privacy policy</a>.
+  </p>
+
+  <footer>
+    Cerebo · © 2026 Satwik Patro · <a href="privacy.html">Privacy Policy</a>
+  </footer>
+
+</main>
+</body>
+</html>
