@@ -42,6 +42,7 @@
   }
   h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
   h3 { font-size: 1.02rem; margin: 1.5rem 0 .4rem; }
+  h2, h3 { scroll-margin-top: 1rem; }
   .contact {
     background: var(--card);
     border-left: 3px solid var(--accent);
@@ -49,12 +50,33 @@
     border-radius: 0 8px 8px 0;
     margin: 0 0 2.25rem;
   }
+  .toc {
+    background: var(--card);
+    border-radius: 8px;
+    padding: .9rem 1.25rem;
+    margin: 1.5rem 0 0;
+  }
+  .toc strong { display: block; margin-bottom: .25rem; }
+  .toc ul { margin: 0; }
+  .toc li { margin: .2rem 0; }
   ul, ol { padding-left: 1.25rem; }
   li { margin: .45rem 0; }
   a { color: var(--accent); }
   code {
     background: var(--card); padding: .1em .35em;
     border-radius: 4px; font-size: .9em;
+  }
+  .table-wrap { overflow-x: auto; margin: .75rem 0 1rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .95rem; line-height: 1.45; }
+  th, td { text-align: left; vertical-align: top; padding: .55rem .6rem; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 600; }
+  thead th { border-bottom: 2px solid var(--rule); vertical-align: bottom; }
+  thead th + th, td.where { width: 5.5rem; }
+  td.where { white-space: nowrap; color: var(--muted); }
+  @media (max-width: 480px) {
+    table { font-size: .88rem; }
+    th, td { padding: .5rem .35rem; }
+    thead th + th, td.where { width: 4.2rem; }
   }
   footer {
     margin-top: 3.5rem; padding-top: 1.5rem;
@@ -81,38 +103,168 @@
     Tap <strong>+</strong> on the home screen to create a deck, or a category to
     group several decks together. Open a deck and tap <strong>+</strong> again to
     add your first card. There is a full set of walkthroughs inside the app under
-    <strong>Settings → Tutorials</strong>.
+    <strong>Settings → Tutorials</strong>. With Apple Intelligence, you can also
+    ask the chat how anything in Cerebo works.
   </p>
 
-  <h2>Frequently asked</h2>
+  <nav class="toc" aria-label="Frequently asked questions">
+    <strong>Frequently asked</strong>
+    <ul>
+      <li><a href="#ai">Apple Intelligence and privacy</a></li>
+      <li><a href="#making-cards">Making cards</a></li>
+      <li><a href="#studying">Studying</a></li>
+      <li><a href="#sync">Sync and backup</a></li>
+      <li><a href="#devices">iPad, iPhone Duo, Apple Watch and widgets</a></li>
+    </ul>
+  </nav>
 
-  <h3>How do I bring my Anki decks across?</h3>
+  <h2 id="ai">Apple Intelligence and privacy</h2>
+
+  <h3 id="where-ai-runs">Where does Cerebo's AI run?</h3>
   <p>
-    Export your deck from Anki as an <code>.apkg</code> file, then in Cerebo tap
-    <strong>+</strong> on the home screen and choose <strong>Import from
-    Anki</strong>. Cards, media, cloze deletions, reverse cards and scheduling all
-    come across, and nested Anki decks become Cerebo categories. Cerebo can export
-    back to <code>.apkg</code> at any time, so your cards are never locked in.
+    On Apple Intelligence: either on your device, or on Apple's
+    <strong>Private Cloud Compute</strong>, depending on the choice in
+    <strong>Settings → AI Text Generation</strong>. Cerebo has no servers of its
+    own, and the developer never receives your prompts, notes or cards.
   </p>
 
-  <h3>How does the scheduling work?</h3>
+  <h3 id="private-cloud-compute">What is Private Cloud Compute, and is it private?</h3>
   <p>
-    Cerebo uses the SM-2 spaced repetition algorithm. After you see a card's
-    answer you rate it Again, Hard, Good or Easy, and that rating sets when the
-    card comes back — easy cards move out to longer intervals, difficult ones
-    return sooner. You can set a daily limit for new cards and reviews per deck.
+    Private Cloud Compute is Apple's server for Apple Intelligence. It runs a
+    larger model than the one on your device, so long documents, study guides and
+    practice tests come out better on it. Apple uses each request only to answer
+    it, does not keep it, and does not make it accessible to Apple. It needs
+    iOS 27 and an internet connection.
   </p>
 
-  <h3>Can I write maths and code on a card?</h3>
+  <h3 id="modes">What do Private Cloud, Hybrid and On Device do?</h3>
+  <p>
+    Every AI request in Cerebo is either heavy work or a quick task, and the
+    setting decides where each kind runs:
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Request</th><th>Private Cloud</th><th>Hybrid</th><th>On Device</th></tr>
+      </thead>
+      <tbody>
+        <tr><th colspan="4">Heavy work</th></tr>
+        <tr><td>Cards from a document, photo, scan, notes or recording</td><td class="where">Cloud</td><td class="where">Cloud</td><td class="where">Device</td></tr>
+        <tr><td>Study guides</td><td class="where">Cloud</td><td class="where">Cloud</td><td class="where">Device</td></tr>
+        <tr><td>Practice Test questions</td><td class="where">Cloud</td><td class="where">Cloud</td><td class="where">Device</td></tr>
+        <tr><td>Revising many cards at once in the chat</td><td class="where">Cloud</td><td class="where">Cloud</td><td class="where">Device</td></tr>
+        <tr><th colspan="4">Quick tasks</th></tr>
+        <tr><td>Chat replies</td><td class="where">Cloud</td><td class="where">Device</td><td class="where">Device</td></tr>
+        <tr><td>One card's answer from <strong>Generate</strong></td><td class="where">Cloud</td><td class="where">Device</td><td class="where">Device</td></tr>
+        <tr><td>Checking written answers in a Practice Test or a chat quiz</td><td class="where">Cloud</td><td class="where">Device</td><td class="where">Device</td></tr>
+        <tr><td>Questions about how Cerebo works</td><td class="where">Cloud</td><td class="where">Device</td><td class="where">Device</td></tr>
+        <tr><td>Working out whether a chat message is a question, a quiz or cards to make</td><td class="where">Device</td><td class="where">Device</td><td class="where">Device</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><strong>Private Cloud</strong> is the default. Sorting a chat message stays
+        on your device because it is a one-word answer that doesn't need the larger
+        model, and it would use up your daily limit.</li>
+    <li><strong>Hybrid</strong> saves your daily limit for the heavy work. A quick
+        task that is too long for your device's model moves to Private Cloud
+        Compute as it runs.</li>
+    <li><strong>On Device</strong> never uses Private Cloud Compute.</li>
+    <li>If Private Cloud Compute can't answer (no connection, an outage, a timeout
+        or the daily limit), your device's model answers instead, when your device
+        has one. Stopping a request, or a request Apple Intelligence declines,
+        never switches to the other model.</li>
+  </ul>
+
+  <h3 id="daily-limit">Is there a limit on Private Cloud Compute?</h3>
+  <p>
+    Yes, Apple sets a daily limit. <strong>Settings → AI Text Generation</strong>
+    shows whether you are near it, and when it resets if Apple says. When you reach
+    it, Cerebo carries on with your device's model until the limit resets, and the
+    chat tells you so. Hybrid makes the limit last longer, and a larger iCloud+ plan
+    raises it.
+  </p>
+
+  <h3 id="requirements">Which devices can use the AI features?</h3>
+  <p>
+    Apple Intelligence needs a device that supports it, turned on in
+    <strong>Settings → Apple Intelligence &amp; Siri</strong>, in a supported
+    language and region, on iOS 26 or later. Private Cloud Compute also needs iOS 27
+    and an internet connection. Cerebo itself runs on iOS 18 and later.
+  </p>
+
+  <h3 id="without-ai">Does Cerebo work without Apple Intelligence?</h3>
+  <p>
+    Yes. Making and editing cards, studying, Match, search, import and export,
+    widgets, iCloud sync and the Apple Watch app work on every supported device.
+    The chat, Practice Test and the <strong>Generate</strong> button need Apple
+    Intelligence and are hidden without it. Scan to Cards and Record a Lecture then
+    put what you scan or record on a new card, and anything you share to Cerebo can
+    go on a new card or wait until Apple Intelligence is ready.
+  </p>
+
+  <h3 id="offline">Does Cerebo work offline?</h3>
+  <p>
+    Yes. Everything works without a connection except iCloud sync and Private Cloud
+    Compute. Offline, AI requests use your device's own model when it has one.
+    Cerebo makes no network requests of its own.
+  </p>
+
+  <h3 id="data">What does Cerebo collect?</h3>
+  <p>
+    Nothing: no accounts, no analytics, no advertising and no tracking. Your cards
+    stay on your device and in your own private iCloud account, and chats are kept
+    on the device you had them on. The details are in the
+    <a href="privacy.html">privacy policy</a>.
+  </p>
+
+  <h2 id="making-cards">Making cards</h2>
+
+  <h3 id="cards-from-files">How do I make cards from a PDF, notes or a photo?</h3>
+  <p>
+    Tap <strong>Ask or make cards</strong> to open the chat, then attach a file or
+    photo, scan a page, paste your notes or record a lecture. Cerebo drafts the
+    cards, with tables, equations and graphs where the material has them, and
+    nothing is added until you review the draft and tap <strong>Add</strong>. A long
+    document can become a category with a deck for each part.
+  </p>
+
+  <h3 id="page-limit">Is there a page limit for PDFs?</h3>
+  <p>
+    Cerebo reads the whole file, then makes cards from a range of pages at a time:
+    up to 120 pages with Private Cloud Compute and up to 30 on the device. Choose the
+    pages in the chat, then carry on with the next range. Pages with a lot of text
+    take longer.
+  </p>
+
+  <h3 id="share">Can I share a web page or a file to Cerebo?</h3>
+  <p>
+    Yes. Choose <strong>Make Cards in Cerebo</strong> in the share sheet, in Safari
+    or any app that shares text or files, and the chat opens with it the next time
+    you open Cerebo. Without Apple Intelligence, Cerebo asks whether to put it on a
+    new card or keep it for later, and it stays until you use it or choose
+    <strong>Discard</strong>. Cerebo can't download a video from a link (YouTube,
+    TikTok): save or screen-record the video and share the file, or share YouTube's
+    transcript page from Safari.
+  </p>
+
+  <h3 id="ask-the-chat">Can I ask the chat how to use Cerebo?</h3>
+  <p>
+    Yes. Ask it things like “How do I share notes to Cerebo?” or “What does Hybrid
+    do?”, and it answers from Cerebo's own help pages.
+  </p>
+
+  <h3 id="maths-and-code">Can I write maths and code on a card?</h3>
   <p>
     Yes. In the card editor, expand the editor and use the toolbar to insert a
     <strong>math block</strong> (LaTeX), a <strong>code block</strong> with syntax
     highlighting, or a <strong>graph</strong> of one or more functions. You can
     also write inline maths in text with <code>\(…\)</code>, and build tables with
-    ordinary markdown pipes.
+    ordinary markdown pipes. In the expanded editor, tap the title to switch
+    between the front and the back.
   </p>
 
-  <h3>How do cloze deletions work?</h3>
+  <h3 id="cloze">How do cloze deletions work?</h3>
   <p>
     Wrap the part you want hidden in double braces: <code>The capital of France is
     {{c1::Paris}}</code>. Use <code>c1</code>, <code>c2</code> and so on to reveal
@@ -120,7 +272,64 @@
     <code>{{c1::Paris::the city of light}}</code>.
   </p>
 
-  <h3>My decks aren't syncing between devices</h3>
+  <h3 id="anki-quizlet">How do I bring my Anki or Quizlet decks across?</h3>
+  <p>
+    <strong>Anki:</strong> export your deck from Anki as an <code>.apkg</code>
+    file, then in Cerebo tap <strong>+</strong> on the home screen and choose
+    <strong>Import from Anki</strong>. Cards, media, cloze deletions, reverse cards
+    and scheduling all come across, and nested Anki decks become Cerebo categories.
+  </p>
+  <p>
+    <strong>Quizlet:</strong> use your set's Export on Quizlet's website (in Safari
+    or on a computer), copy the text it gives you, then tap <strong>+</strong> and
+    choose <strong>Import from Quizlet</strong> and paste it. Cerebo doesn't
+    download anything from Quizlet.
+  </p>
+  <p>
+    Cerebo can export back to <code>.apkg</code> at any time, so your cards are
+    never locked in.
+  </p>
+
+  <h2 id="studying">Studying</h2>
+
+  <h3 id="scheduling">How does the scheduling work?</h3>
+  <p>
+    Cerebo uses the SM-2 spaced repetition algorithm, as Anki does. After you see a
+    card's answer you rate it Again, Hard, Good or Easy, and the time under each
+    button is when the card comes back: easy cards move out to longer intervals,
+    difficult ones return sooner. Each deck introduces 20 new cards a day by
+    default; change it in Settings, or for one deck in Edit Deck. Reviews that are
+    due are never held back.
+  </p>
+
+  <h3 id="learning-steps">Why does a card come back a few minutes later?</h3>
+  <p>
+    New cards, and cards you forget, go through two short learning steps, 1 minute
+    and 10 minutes, before moving to days. Cerebo shows you other cards in the
+    meantime. If none are ready, it shows how long until the next one and brings it
+    back when it is due, or you can close the session and come back later.
+    <strong>Easy</strong> skips the learning steps.
+  </p>
+
+  <h3 id="test-yourself">Can I test myself another way?</h3>
+  <p>
+    Yes. A deck's <strong>Test</strong> button offers <strong>Match</strong>, where
+    you pair each front with its back against the clock, on every device. With
+    Apple Intelligence it also offers a <strong>Practice Test</strong> of multiple
+    choice, true or false and written questions, and you can ask the chat to quiz
+    you.
+  </p>
+
+  <h3 id="search">How do I find a card?</h3>
+  <p>
+    Tap the magnifying glass to search categories, decks and the text inside your
+    cards. Tapping a card opens it in its deck, and when the words you searched for
+    are on the back, the result shows where.
+  </p>
+
+  <h2 id="sync">Sync and backup</h2>
+
+  <h3 id="not-syncing">My decks aren't syncing between devices</h3>
   <ol>
     <li>Check that <strong>iCloud sync</strong> is turned on in Cerebo's Settings on every device.</li>
     <li>Make sure all devices are signed in to the <em>same</em> Apple Account, with iCloud Drive enabled.</li>
@@ -128,39 +337,51 @@
     <li>Cerebo's Settings screen shows the current sync status and reports the last error if one occurred.</li>
   </ol>
 
-  <h3>Does Cerebo work offline?</h3>
+  <h3 id="backup">How do I back up my cards?</h3>
   <p>
-    Completely. Every feature except iCloud sync works with no network connection
-    at all — the app makes no network requests of its own.
-  </p>
-
-  <h3>Where does the AI card generation run?</h3>
-  <p>
-    On your device, using Apple Intelligence. It appears only on devices that
-    support it, and nothing you write is sent to any server the developer
-    operates.
-  </p>
-
-  <h3>How do I back up my cards?</h3>
-  <p>
-    Open a deck, tap the <strong>⋯</strong> menu and choose an export format —
+    Open a deck, tap the <strong>⋯</strong> menu and choose an export format:
     <strong>JSON</strong> keeps the most detail, <strong>.apkg</strong> is best if
     you want to open the deck in Anki, and <strong>CSV</strong> is the simplest to
-    read elsewhere. Save the file wherever you keep backups.
+    read elsewhere. <strong>Print or Export PDF</strong> gives you every card on
+    paper. Save the file wherever you keep backups.
   </p>
 
-  <h3>Can I use Cerebo on my Apple Watch?</h3>
+  <h3 id="chats-sync">Do my chats sync?</h3>
   <p>
-    Yes — install the Cerebo watch app from the Watch app on your iPhone. Your
-    decks sync across from your phone so you can review on your wrist. There are
-    also Home Screen and Lock Screen widgets showing what's due, and a Live
-    Activity while a study session is running.
+    No. Chats are kept on the device you had them on until you delete them (swipe a
+    chat in the history, or Clear All). Cards and decks made in a chat are part of
+    your library and sync like the rest.
+  </p>
+
+  <h2 id="devices">iPad, iPhone Duo, Apple Watch and widgets</h2>
+
+  <h3 id="ipad-duo">Does Cerebo work on iPad and iPhone Duo?</h3>
+  <p>
+    Yes. On iPad, and on iPhone Duo unfolded, your library sits in a sidebar beside
+    the deck you have open. Folded halfway on iPhone Duo, Cerebo splits at the
+    hinge: when you study, the card is on one half and the rating buttons on the
+    other, and the chat and the expanded card editor do the same.
+  </p>
+
+  <h3 id="watch">Can I use Cerebo on my Apple Watch?</h3>
+  <p>
+    Yes. Install the Cerebo watch app from the Watch app on your iPhone. Your decks
+    sync across from your phone so you can review on your wrist.
+  </p>
+
+  <h3 id="widgets">What widgets and controls are there?</h3>
+  <p>
+    Home Screen and Lock Screen widgets show what's due, and a Live Activity follows
+    a study session. The Quick Capture widget and the <strong>Scan to Cards</strong>
+    and <strong>Record a Lecture</strong> controls, for Control Center, the Lock
+    Screen or the Action button, start a scan or a recording in one tap.
   </p>
 
   <h2>Privacy</h2>
   <p>
-    Cerebo collects nothing — no accounts, no analytics, no advertising, no
-    tracking. The full details are in the
+    Cerebo collects nothing: no accounts, no analytics, no advertising, no
+    tracking. Apple Intelligence requests are processed privately on your device or
+    by Apple's Private Cloud Compute. The full details are in the
     <a href="privacy.html">privacy policy</a>.
   </p>
 

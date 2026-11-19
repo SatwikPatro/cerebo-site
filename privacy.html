@@ -68,22 +68,25 @@
 <main>
 
   <h1>Privacy Policy</h1>
-  <p class="updated">Cerebo · Last updated 13 September 2026</p>
+  <p class="updated">Cerebo · Last updated 19 November 2026</p>
 
   <p class="lede">
     <strong>Cerebo collects no data about you.</strong> There are no accounts, no
-    analytics, no advertising and no tracking. The app makes no network requests
-    of its own. Everything you create stays on your device. If your device is
-    signed into iCloud, iCloud sync — which you can turn off in Settings — moves
-    it through your own private iCloud account, which the developer cannot
-    access.
+    analytics, no advertising and no tracking, and Cerebo has no servers. The app
+    makes no network requests of its own. What you create stays on your device.
+    If your device is signed into iCloud, iCloud sync (which you can turn off in
+    Settings) moves it through your own private iCloud account, and Apple
+    Intelligence requests are processed privately on your device or by Apple's
+    Private Cloud Compute. The developer cannot access any of it.
   </p>
 
   <h2>What Cerebo stores, and where</h2>
   <p>
     Your decks, cards, images, audio recordings, PDF attachments, study history
     and settings are stored locally on your device, inside the app's own
-    container. They are not sent anywhere by the app.
+    container. Your chats with Cerebo are kept on the device you had them on, and
+    are not synced. None of this is sent anywhere by the app, except as described
+    under iCloud sync and Apple Intelligence below.
   </p>
 
   <h2>iCloud sync</h2>
@@ -110,21 +113,52 @@
   <ul>
     <li><strong>Camera</strong> — to photograph or scan something onto a card.</li>
     <li><strong>Photo library</strong> — to add images you choose to a card.</li>
-    <li><strong>Microphone</strong> — to record an audio clip onto a card.</li>
+    <li><strong>Microphone</strong> — to record an audio clip onto a card, or a
+        lecture to make cards from.</li>
   </ul>
   <p>
-    The resulting files are saved with your card on your device. Nothing is
-    uploaded. Text recognition (OCR) on an image runs entirely on your device.
-    You can decline any of these permissions and keep using the rest of the app.
+    The resulting files are saved with your card on your device. Text recognition
+    (OCR) on an image, and the transcript of a recording, are made on your device.
+    When you ask Apple Intelligence to make cards from a photo, scan or recording,
+    what it reads from them is processed as described under Apple Intelligence
+    below. You can decline any of these permissions and keep using the rest of the
+    app.
   </p>
 
-  <h2>AI card generation</h2>
+  <h2>Apple Intelligence</h2>
   <p>
-    Cerebo's AI generation uses <strong>Apple Intelligence</strong> through Apple's
-    on-device <code>FoundationModels</code> framework. It runs on your device, and
-    the developer neither sees nor receives your prompts or card content. The
-    feature appears only on devices that support Apple Intelligence. Apple's
-    terms govern that framework's behaviour.
+    Cerebo's AI features (the chat, cards made from documents, photos and notes,
+    study guides, practice tests and generated answers) use
+    <strong>Apple Intelligence</strong> through Apple's
+    <code>FoundationModels</code> framework. Depending on the choice in
+    <strong>Settings → AI Text Generation</strong>, a request is processed on your
+    device or by Apple's <strong>Private Cloud Compute</strong>:
+  </p>
+  <ul>
+    <li><strong>Private Cloud</strong> (the default on iOS 27) sends requests to
+        Private Cloud Compute, and uses your device when Private Cloud Compute
+        can't answer, for example offline or past Apple's daily limit.</li>
+    <li><strong>Hybrid</strong> sends heavy work, such as cards from a document,
+        study guides and practice tests, to Private Cloud Compute, and handles
+        quick tasks on your device.</li>
+    <li><strong>On Device</strong> keeps every request on your device. On iOS 26,
+        every request stays on your device.</li>
+  </ul>
+  <p>
+    Private Cloud Compute processes a request only to answer it. Apple does not
+    keep it and does not make it accessible to Apple. Cerebo has no AI service of
+    its own and no content telemetry, so the developer neither sees nor receives
+    your prompts, notes or cards. The features appear only on devices that support
+    Apple Intelligence, and Apple's terms govern the framework's behaviour.
+    The <a href="index.html#modes">support page</a> lists which requests go where.
+  </p>
+
+  <h2>Sharing to Cerebo</h2>
+  <p>
+    What you send with <strong>Make Cards in Cerebo</strong> in the share sheet is
+    copied into Cerebo's storage on your device, and stays there until you use it or
+    discard it. Text from a Safari page is read in the page itself, and Cerebo does
+    not download anything from links.
   </p>
 
   <h2>Translation and text-to-speech</h2>
